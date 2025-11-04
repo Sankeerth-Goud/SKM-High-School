@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKM High School - Empowering Students to Excel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --saffron: #FF9933;
+            --white: #FFFFFF;
+            --green: #138808;
+            --navy: #000080;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(to right, var(--saffron) 0%, var(--saffron) 33%, var(--white) 33%, var(--white) 66%, var(--green) 66%, var(--green) 100%);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--saffron), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--saffron), var(--green));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+        }
+
+        /* Pages Container */
+        .page {
+            display: none;
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Hero Section - Home */
+        .hero {
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--white) 50%, var(--green) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🇮🇳';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--saffron), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            font-weight: 500;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--saffron), #ff7700);
+            color: white;
+        }
+
+        .cta-secondary {
+            background: linear-gradient(135deg, var(--green), #0a5c05);
+            color: white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 3rem 2rem;
+            background: var(--white);
+            border-top: 4px solid;
+            border-image: linear-gradient(to right, var(--saffron), var(--white), var(--green)) 1;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--saffron), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--saffron), var(--white), var(--green));
+            border-radius: 2px;
+        }
+
+        /* About Page */
+        .about-header {
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--green) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .about-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-top: 4px solid;
+        }
+
+        .about-card:nth-child(1) {
+            border-top-color: var(--saffron);
+        }
+
+        .about-card:nth-child(2) {
+            border-top-color: var(--white);
+            border-top-width: 4px;
+            border-top-style: solid;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1), inset 0 4px 0 var(--gray);
+        }
+
+        .about-card:nth-child(3) {
+            border-top-color: var(--green);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--saffron), var(--green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Offerings Page */
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .offering-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .offering-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--saffron), var(--white), var(--green));
+            z-index: 2;
+        }
+
+        .offering-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .offering-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .offering-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+            color: white;
+            padding: 2rem;
+            transform: translateY(60%);
+            transition: transform 0.3s;
+        }
+
+        .offering-card:hover .offering-overlay {
+            transform: translateY(0);
+        }
+
+        /* Blog Page */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(to right, var(--saffron), var(--green)) 1;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--green);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .blog-card p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--saffron);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Contact Page */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid;
+            border-image: linear-gradient(to right, var(--saffron), var(--green)) 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--saffron), var(--green));
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, var(--saffron), var(--green));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            border-top: 4px solid;
+            border-image: linear-gradient(to right, var(--saffron), var(--white), var(--green)) 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-motto {
+            font-style: italic;
+            color: var(--gray);
+            margin: 1rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                🇮🇳 SKM High School
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('about')">About</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('offerings')">Offerings</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('blog')">Blog</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Empowering Students to Excel</h1>
+                <p>Building tomorrow's leaders through holistic education, athletic excellence, and dedicated mentorship</p>
+                <div class="hero-buttons">
+                    <a href="#" class="cta-button cta-primary" onclick="showPage('about')">Discover Our Journey</a>
+                    <a href="#" class="cta-button cta-secondary" onclick="showPage('contact')">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Happy Students</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Dedicated Faculty</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Sports Achievements</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="about-icon">🌟</div>
+                    <h3>Holistic Development</h3>
+                    <p>We prioritize all-round development, ensuring every child has the opportunity to thrive academically, socially, and physically in a nurturing environment.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🏆</div>
+                    <h3>Sports Excellence</h3>
+                    <p>Our students proudly represent at national and state levels in various sports, showcasing their talent, dedication, and the spirit of true champions.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">👨‍🏫</div>
+                    <h3>Dedicated Faculty</h3>
+                    <p>Our experienced and passionate educators are committed to guiding each student on their unique educational journey with care and expertise.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="about-header">
+            <h1>About SKM High School</h1>
+            <p>Honoring Legacy, Building Future</p>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Our Inspiring Journey</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: var(--gray); font-size: 1.1rem; line-height: 1.8;">
+                Established in 2020 in Muneerabad, SKM High School honors the legacy of late Shri Khannamma. We are committed to the holistic development of every student, nurturing their academic excellence while building strong character, patriotic values, and a deep sense of social responsibility. Our institution stands as a beacon of quality education in the community.
+            </p>
+            
+            <h2 class="section-title" style="margin-top: 4rem;">Our Mission & Vision</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="about-icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>To provide quality education that develops critical thinking, creativity, and character while instilling patriotic values and a commitment to serve the nation and society.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">👁️</div>
+                    <h3>Our Vision</h3>
+                    <p>To be recognized as a leading institution that shapes future leaders who are academically excellent, socially responsible, and proud contributors to India's progress.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">💪</div>
+                    <h3>Our Values</h3>
+                    <p>Integrity, Excellence, Respect, Unity in Diversity, Patriotism, and Commitment to continuous learning and improvement in all aspects of life.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 4rem;">Why Choose SKM High School?</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="about-card" style="margin-bottom: 1.5rem;">
+                    <h3>🏫 Legacy of Excellence</h3>
+                    <p>Building on a strong foundation since 2020, honoring the vision of late Shri Khannamma with dedication and commitment to educational excellence.</p>
+                </div>
+                <div class="about-card" style="margin-bottom: 1.5rem;">
+                    <h3>👥 Individual Attention</h3>
+                    <p>Small class sizes ensure personalized attention for each student's unique needs, fostering an environment where every child can reach their full potential.</p>
+                </div>
+                <div class="about-card" style="margin-bottom: 1.5rem;">
+                    <h3>🏅 National Recognition</h3>
+                    <p>Students competing and winning at national and state level competitions, bringing pride to the school and the Muneerabad community.</p>
+                </div>
+                <div class="about-card">
+                    <h3>🤝 Community Engagement</h3>
+                    <p>Strong ties with the Muneerabad community and active parent involvement in shaping a better future for our children.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OFFERINGS PAGE -->
+    <div id="offerings" class="page">
+        <div class="about-header">
+            <h1>Our Offerings</h1>
+            <p>Comprehensive Programs for Holistic Growth</p>
+        </div>
+        <div class="container">
+            <div class="offerings-grid">
+                <div class="offering-card">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="Academic Excellence" class="offering-image">
+                    <div class="offering-overlay">
+                        <h3>Academic Excellence</h3>
+                        <p>Comprehensive curriculum designed to nurture critical thinking, creativity, and academic excellence in all subjects.</p>
+                    </div>
+                </div>
+                <div class="offering-card">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800" alt="Library Resources" class="offering-image">
+                    <div class="offering-overlay">
+                        <h3>Library Resources</h3>
+                        <p>Extensive collection of books, journals, and digital resources to foster a love for reading and research.</p>
+                    </div>
+                </div>
+                <div class="offering-card">
+                    <img src="https://images.unsplash.com/photo-1551847812-c7c0b0d7f6fa?w=800" alt="Sports Facilities" class="offering-image">
+                    <div class="offering-overlay">
+                        <h3>Sports Facilities</h3>
+                        <p>State-of-the-art facilities for cricket, athletics, and various sports to develop physical fitness and sportsmanship.</p>
+                    </div>
+                </div>
+                <div class="offering-card">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800" alt="Sports Training" class="offering-image">
+                    <div class="offering-overlay">
+                        <h3>Professional Coaching</h3>
+                        <p>Expert coaches training students for national and state-level competitions across multiple sports disciplines.</p>
+                    </div>
+                </div>
+                <div class="offering-card">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800" alt="Technology Integration" class="offering-image">
+                    <div class="offering-overlay">
+                        <h3>Technology Integration</h3>
+                        <p>Modern classrooms equipped with the latest educational technology to enhance learning experiences.</p>
+                    </div>
+                </div>
+                <div class="offering-card">
+                    <img src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?w=800" alt="Arts & Culture" class="offering-image">
+                    <div class="offering-overlay">
+                        <h3>Arts & Culture</h3>
+                        <p>Programs in music, dance, drama, and fine arts to nurture creativity and cultural appreciation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOG PAGE -->
+    <div id="blog" class="page">
+        <div class="about-header">
+            <h1>Latest News & Events</h1>
+            <p>Stay Updated with SKM High School</p>
+        </div>
+        <div class="container">
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800" alt="Blog" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-date">October 15, 2025</div>
+                        <h3>Independence Day Celebrations 2025</h3>
+                        <p>Our students celebrated the 79th Independence Day with patriotic fervor, presenting cultural programs and honoring our freedom fighters.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1551847812-c7c0b0d7f6fa?w=800" alt="Blog" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-date">September 28, 2025</div>
+                        <h3>State Level Sports Championship Win</h3>
+                        <p>Proud moment as our athletics team secured gold medals at the State Level Championship, bringing glory to the school.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800" alt="Blog" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-date">September 10, 2025</div>
+                        <h3>Teachers' Day Celebration</h3>
+                        <p>Students organized a heartfelt celebration honoring our dedicated teachers who shape the future of our nation.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="Blog" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-date">August 22, 2025</div>
+                        <h3>Annual Science Exhibition</h3>
+                        <p>Students showcased innovative projects demonstrating scientific principles and creative problem-solving skills.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800" alt="Blog" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-date">August 5, 2025</div>
+                        <h3>National Level Cricket Tournament</h3>
+                        <p>Our cricket team represented the school at the national level, displaying exceptional sportsmanship and skill.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=800" alt="Blog" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-date">July 18, 2025</div>
+                        <h3>Parent-Teacher Meeting Success</h3>
+                        <p>Productive discussions between parents and teachers focused on student development and academic progress.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="about-header">
+            <h1>Contact Us</h1>
+            <p>We'd Love to Hear From You</p>
+        </div>
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--dark);">Send us a Message</h3>
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <strong>Address</strong><br>
+                            SKM High School<br>
+                            Muneerabad<br>
+                            Telangana, India
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div>
+                            <strong>Phone</strong><br>
+                            +91 XXXXX XXXXX<br>
+                            +91 XXXXX XXXXX
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            info@skmhs.in<br>
+                            admission@skmhs.in
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div>
+                            <strong>Office Hours</strong><br>
+                            Monday - Friday: 8:00 AM - 4:00 PM<br>
+                            Saturday: 8:00 AM - 1:00 PM
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-flag">🇮🇳</div>
+            <h3>SKM High School</h3>
+            <p>Muneerabad, Telangana</p>
+            <p class="footer-motto">"Empowering Students to Excel | Building the Future of India"</p>
+            <p style="margin-top: 2rem; color: var(--gray);">&copy; 2025 SKM High School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageName) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageName).classList.add('active');
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Close mobile menu
+            document.getElementById('navLinks').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            return false;
+        }
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        async function handleSubmit(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    message: form.message.value
+  };
+
+  try {
+    const res = await fetch('http://localhost:5000/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      alert('✅ Message sent successfully!');
+      form.reset();
+    } else {
+      alert('⚠️ Something went wrong.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('🚫 Failed to send message.');
+  }
+}
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-card, .offering-card, .blog-card, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>}
